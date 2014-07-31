@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN"   
+"http://struts.apache.org/dtds/struts-2.1.dtd">  
+<struts>  
+    <constant name="struts.devMode" value="true"></constant>  
+    <constant name="struts.i18n.encoding" value="utf-8"></constant>  
+    <package name="default"   extends="struts-default">  
+    	
+        <action name="UserLoginAction" class="action.UserAction" method="login">  
+            <result name="success"> index.jsp</result>  
+            <result name="error"> user_login.jsp</result>  
+        </action>
+        <action name="UserRegisterAction" class="action.UserAction" method="register">  
+            <result name="success"> user_login.jsp</result>  
+            <result name="error"> sign.jsp</result>
+        </action>
+        <action name="UpdateProfileAction1" class="action.UserAction" method="view_profile">  
+            <result name="success">update_profile.jsp</result>  
+            <result name="error"> index.jsp</result> 
+        </action> 
+        <action name="UpdateProfileAction2" class="action.UserAction" method="update">  
+            <result name="success">index.jsp</result>  
+            <result name="error"> update_profile.jsp</result> 
+        </action> 
+        <action name="UserScanAction" class="action.UserAction" method="scan" >  
+            <result name="success"> userManage.jsp</result>  
+            <result name="error"> userManage.jsp</result> 
+        </action>
+        <action name="UserAddAction" class="action.UserAction" method="register">  
+            <result name="success"  type="redirectAction"> UserScanAction</result>    
+            <result name="error"> add_user.jsp</result>
+        </action> 
+        <action name="UserDeleteAction" class="action.UserAction" method="delete" >  
+            <result name="success"  type="redirectAction"> UserScanAction</result>  
+            <result name="error" type="redirectAction"> UserScanAction</result>  
+        </action>  
+        <action name="UserUpdateAction1" class="action.UserAction" method="view_user" >  
+            <result name="success" > update_user.jsp</result>  
+            <result name="error" type="redirectAction"> UserScanAction</result> 
+        </action>  
+        <action name="UserUpdateAction2" class="action.UserAction" method="update" >  
+            <result name="success"  type="redirectAction"> UserScanAction</result>  
+            <result name="error"> update_user.jsp</result> 
+        </action>
+        <action name="AdminLoginAction" class="action.AdminAction" method="login">  
+            <result name="success"> admin_index.jsp</result>  
+            <result name="error"> admin_login.jsp</result>  
+        </action>
+        <action name="BookScanAction" class="action.BookAction" method="scan" >  
+            <result name="success"> bookManage.jsp</result>  
+            <result name="error"> bookManage.jsp</result> 
+        </action> 
+         <action name="BookViewAction" class="action.BookAction" method="scan">  
+            <result name="success" >view.jsp</result>  
+            <result name="error">view.jsp</result> 
+        </action> 
+        <action name="BookSearchAction" class="action.BookAction" method="search">  
+            <result name="success"> search.jsp</result>  
+            <result name="error"> search.jsp</result> 
+        </action> 
+        <action name="VisitorBookSearchAction" class="action.BookAction" method="search">  
+            <result name="success"> search_visitor.jsp</result>  
+            <result name="error"> search_visitor.jsp</result> 
+        </action>
+        <action name="BookAddAction" class="action.BookAction" method="add" >  
+             <result name="success" type="redirectAction"> BookScanAction</result>  
+            <result name="error" type="redirectAction"> BookScanAction</result> 
+        </action>
+        <action name="BookDeleteAction" class="action.BookAction" method="delete" >  
+            <result name="success" type="redirectAction"> BookScanAction</result>  
+            <result name="error" type="redirectAction"> BookScanAction</result> 
+        </action>  
+        <action name="BookUpdateAction1" class="action.BookAction" method="view" >  
+            <result name="success" > update_book.jsp</result>  
+            <result name="error" type="redirectAction"> BookScanAction</result>
+        </action>  
+        <action name="BookUpdateAction2" class="action.BookAction" method="update" >  
+            <result name="success" type="redirectAction"> BookScanAction</result>  
+            <result name="error"> update_book.jsp</result> 
+        </action>
+        <action name="OrderScanAction" class="action.OrderAction" method="scan" >  
+            <result name="success">orderManage.jsp</result>  
+            <result name="error"> orderManage.jsp</result> 
+        </action>
+        <action name="OrderViewAction" class="action.OrderAction" method="view" >  
+            <result name="success">order.jsp</result>  
+            <result name="error"> order.jsp</result> 
+        </action>
+        <action name="CartViewAction" class="action.CartAction" method="view" >  
+            <result name="success">cart.jsp</result>  
+            <result name="error"> cart.jsp</result> 
+        </action>
+        <action name="CartAddAction" class="action.CartAction" method="add" >  
+            <result name="success" type="redirectAction" >BookViewAction</result>  
+            <result name="error"> view.jsp</result> 
+        </action>
+        <action name="SearchCartAddAction" class="action.CartAction" method="add" >  
+            <result name="success" type="redirectAction">
+            <param name="actionName">BookSearchAction</param> 
+            <param name="keyword">${keyword}</param> 
+            <param name="searchkind">${searchkind}</param> 
+            </result> 
+            <result name="error"> search.jsp</result> 
+        </action>
+        <action name="CartDeleteAction" class="action.CartAction" method="delete" >  
+            <result name="success" type="redirectAction">CartViewAction</result>  
+            <result name="error" type="redirectAction">CartViewAction</result>
+        </action>
+        <action name="CountAction" class="action.CountAction" method="count" >  
+            <result name="success"> count.jsp</result>  
+            <result name="error" type="redirectAction">CartViewAction</result>
+        </action> 
+        <action name="PayAction" class="action.CountAction" method="pay" >  
+            <result name="error">count.jsp</result> 
+        </action> 
+        <action name="PayCancelAction" class="action.CountAction" method="cancel" >  
+            <result name="success" type="redirectAction"> CartViewAction</result>  
+            <result name="error">index.jsp</result> 
+        </action> 
+    </package>  
+</struts>  
