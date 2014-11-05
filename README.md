@@ -1,4 +1,4 @@
-bookstore
+bookshop
 =========
 
 网上书店
